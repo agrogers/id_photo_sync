@@ -1,0 +1,13 @@
+<!-- file: views/res_users_views.xml -->
+<odoo>
+    <record id="view_users_list_with_image" model="ir.ui.view">
+        <field name="name">res.users.list.with.image</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <field name="image_128" string="Image" widget="image" optional="show"  options="{'size': [32, 32]}" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

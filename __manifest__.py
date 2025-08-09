@@ -9,6 +9,7 @@
     'application': False,
     'data': [
         'data/actions.xml',
+        'views/res_users_views.xml',
     ],
     'description': '''
         This module adds a server action to sync the image attached to a User, Employee, or Partner.
