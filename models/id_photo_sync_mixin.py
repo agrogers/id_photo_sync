@@ -53,45 +53,33 @@ class IDPhotoSyncMixin(models.AbstractModel):
             targets += [r for r in partners if r != self]
 
         for rec in targets:
-            if not rec.image_1920 or len(rec.image_1920) < 800:
-                rec.image_1920 = self.image_1920
+            # Override whatever image they have 
+            rec.image_1920 = self.image_1920
 
 
 class ResPartner(models.Model):
     _name = 'res.partner'
     _inherit = ['res.partner', 'idphoto.sync.mixin']
 
-    def sync_id_photo_to_user(self):
+    def sync_id_photo(self):
         """Copy this partner's image to the linked user record."""
-        self._sync_image_to_linked(['res.users'])
-
-    def sync_id_photo_to_employee(self):
-        """Copy this partner's image to the linked employee record(s)."""
-        self._sync_image_to_linked(['hr.employee'])
+        self._sync_image_to_linked(['res.users','hr.employee'])
 
 
 class HrEmployee(models.Model):
     _name = 'hr.employee'
     _inherit = ['hr.employee', 'idphoto.sync.mixin']
 
-    def sync_id_photo_to_user(self):
+    def sync_id_photo(self):
         """Copy this employee's image to the linked user record."""
-        self._sync_image_to_linked(['res.users'])
-
-    def sync_id_photo_to_partner(self):
-        """Copy this employee's image to the linked partner (address) record."""
-        self._sync_image_to_linked(['res.partner'])
+        self._sync_image_to_linked(['res.users','res.partner'])
 
 
 class ResUsers(models.Model):
     _name = 'res.users'
     _inherit = ['res.users', 'idphoto.sync.mixin']
 
-    def sync_id_photo_to_employee(self):
-        """Copy this user's image to the linked employee record."""
-        self._sync_image_to_linked(['hr.employee'])
-
-    def sync_id_photo_to_partner(self):
-        """Copy this user's image to the linked partner record."""
-        self._sync_image_to_linked(['res.partner'])
+    def sync_id_photo(self):
+        """Copy this user's image to the linked record."""
+        self._sync_image_to_linked(['hr.employee','res.partner'])
 

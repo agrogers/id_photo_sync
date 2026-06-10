@@ -1,6 +1,6 @@
 {
     'name': 'Image Sync Between User, Employee, Partner',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.1',
     "author": "Andrew Rogers",
     'category': 'Tools',
     'summary': 'Enables synching of images between Users, Employees, and Contacts',
